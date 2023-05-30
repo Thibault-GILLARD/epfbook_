@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css"></link>
+    <script type="text/javascript" src="/students.js"></script>
+  </head>
+  <body>
+    <main>
+    <h1>Students</h1>
+    <p class="long-text">
+      Les Représentants du Peuple Français, constitués en Assemblée Nationale, considérant que l'ignorance, l'oubli ou le mépris des droits de l'Homme sont les seules causes des malheurs publics et de la corruption des Gouvernements, ont résolu d'exposer, dans une Déclaration solennelle, les droits naturels, inaliénables et sacrés de l'Homme, afin que cette Déclaration, constamment présente à tous les Membres du corps social, leur rappelle sans cesse leurs droits et leurs devoirs ; afin que les actes du pouvoir législatif, et ceux du pouvoir exécutif, pouvant être à chaque instant comparés avec le but de toute institution politique, en soient plus respectés ; afin que les réclamations des citoyens, fondées désormais sur des principes simples et incontestables, tournent toujours au maintien de la Constitution et au bonheur de tous.</p>
+    <ul class="students">
+    <% students.forEach(function(student) { %>
+      <li><%= student.name %> | <%= student.school %></li>
+    <%})%>
+    </ul>
+    <button id="test">Test</button>
+   </main>
+  </body>
+</html>
+
+
+
+<!-- 
+<html>
+    <head>
+        <title>Students</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <h1>
+            Students
+        </h1>
+        <p class="long-text">
+            "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+        <ul>
+            
+            <% students.forEach(function(student) { %>
+            <li class="puce"><%= student.name %> | <%= student.school %></li>
+            <%})%>
+        </ul>
+    </body>
+</html> 
+ -->
+<!-- 
+ <html>
+    <head>
+        <title>Students</title>
+        <style>
+            body {
+                background-color: rgb(56, 91, 144);
+                justify-content: center;
+                align-items: center;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                color: rgb(228, 228, 228);
+                font-size: 2rem;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .puce {
+                background-color: #eee;
+                padding: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Students
+        </h1>
+        <ul>
+            <% students.forEach(function(student) { %>
+            <li class="puce"><%= student.name %> | <%= student.school %></li>
+            <%})%>
+        </ul>
+    </body>
+</html>
+ -->

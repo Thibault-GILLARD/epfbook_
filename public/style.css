@@ -1,0 +1,14 @@
+h1 {
+    color: rgb(65, 104, 128);
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Hide it on smaller screens using a media query and the display CSS rule.
+Hint: you will need a class name on your long paragraph. */
+
+@media (max-width: 1000px) {
+    .p.long-text {
+        display: none;
+    }
+}
