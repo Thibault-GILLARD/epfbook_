@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h2 align="center">Web Programming
+  <h2 align="center">Web Programming,
 Code your own social network -
 Epfbook</h3>
   <a href="https://www.epf.fr/en">
