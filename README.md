@@ -70,6 +70,13 @@ Learn how to create advanced data visualizations using JavaScript, specifically 
 </p>
 </details>
 
+
+# EPFBook Application
+
+Welcome to the EPFBook application!
+
+## Final Exam
+
 <details>
 <summary><strong>TP6: Connect to a Database and Deploy in a Real-life Environment</strong></summary>
 <p>
