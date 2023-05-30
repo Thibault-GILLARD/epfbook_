@@ -8,6 +8,7 @@ const basicAuth = require("express-basic-auth");
 const bcrypt = require("bcrypt");
 
 // TP4 
+// This function is used to parse a CSV file with a header
 const parseCsvWithHeader = (filepath, cb) => {
   const rowSeparator = "\n";
   const cellSeparator = ",";
@@ -31,6 +32,7 @@ const parseCsvWithHeader = (filepath, cb) => {
 };
 
 // TP4 Autorizer function
+// This function is used to check if the user is authorized by comparing the password with the encrypted one in the CSV file
 const encryptedPasswordAuthorizer = (username, password, cb) => {
   // Parse the CSV file: this is very similar to parsing students!
   parseCsvWithHeader("./users.csv", (err, users) => {
@@ -54,6 +56,7 @@ const encryptedPasswordAuthorizer = (username, password, cb) => {
 };
 
 // TP4 Cookies
+// using a cookie to store the token in the browser
 const token = "FOOBAR";
 const tokenCookie = {
   path: "/",
@@ -65,7 +68,7 @@ const tokenCookie = {
 const path = require('path');
 // Enable EJS templates
 app.set('views','./views'); // EJS set the path to the views
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); // EJS set the view engine to EJS
 
 // Enable Static Files loading
 app.use(express.static("public"));
@@ -91,6 +94,7 @@ const student_data = [
   { name: "Eric Burel", school: "LBKE" },
   { name: "Harry Potter", school: "Poudlard" },
 ];
+
 
 const getStudentsFromCsvfile = (cb) => {
   const rowSeparator = "\n";
@@ -241,5 +245,4 @@ app.get('/students', function(req, res) {
     });
   });
 });
-
 
