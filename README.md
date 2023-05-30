@@ -2,7 +2,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h2 align="center">TP2: Server, Code your own social network</h3>
+  <h2 align="center">Web Programming
+Code your own social network -
+Epfbook</h3>
   <a href="https://www.epf.fr/en">
     <img src="https://www.univ-reims.fr/etablissements-associes/media-images/11329/logo-epf-troyes.png" alt="Logo" width="211" height="179">
   </a>
