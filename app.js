@@ -223,9 +223,9 @@ app.post("/students/create", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
 //Create a new GET endpoint /students that serves this view: res.render("students")
 /*
