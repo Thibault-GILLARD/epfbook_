@@ -227,6 +227,36 @@ app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
+// Exam Exercise 1
+/* app.get('/students/:id', (req, res) => {
+  const studentId = req.params.id;
+  const student = {
+    name: "Patrick burel",
+    school: "Poker University"
+  };
+  res.render('student_details', { student });
+}); */
+
+app.get('/students/:id', (req, res) => {
+  const studentId = parseInt(req.params.id); // Convert the ID to an integer
+
+  // Read the student data from the CSV file
+  getStudentsFromCsvfile((err, students) => {
+    if (err) {
+      console.error(err);
+      res.send("ERROR");
+      return;
+    }
+    if (studentId >= 0 && studentId < students.length) {
+      const student = students[studentId];
+      res.render('student_details', { student });
+    } else {
+      res.status(404).send('Student not found');
+    }
+  });
+});
+
+
 //Create a new GET endpoint /students that serves this view: res.render("students")
 /*
 app.get("/students", (req, res) => {

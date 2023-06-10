@@ -11,6 +11,7 @@
     <ul class="students">
     <% students.forEach(function(student) { %>
       <li><%= student.name %> | <%= student.school %></li>
+      <a href="/students/<%= students.indexOf(student) %>">View Details</a>
     <%})%>
     </ul>
     <button id="test">Test</button>
