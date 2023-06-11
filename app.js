@@ -223,6 +223,8 @@ app.post("/students/create", (req, res) => {
   });
 });
 
+
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
@@ -237,8 +239,40 @@ app.listen(3000, () => {
   res.render('student_details', { student });
 }); */
 
+
+// Exam Exercise 1
+// Exam Exercise 2
+/* 
+This endpoint will render the student details page with the student data from the CSV file
+The student ID is passed as a parameter in the URL 
+Example: http://localhost:3000/students/0 
+*/
 app.get('/students/:id', (req, res) => {
   const studentId = parseInt(req.params.id); // Convert the ID to an integer
+
+  getStudentsFromCsvfile((err, students) => {
+    if (err) {
+      console.error(err);
+      res.send("Oops! Something went wrong. Please try again later.");
+      return;
+    }
+    if (studentId >= 0 && studentId < students.length) {
+      const student = students[studentId];
+      res.render('student_details', { student, studentId });
+    } else {
+      res.status(404).send('Oops! The student it looks like you are looking for a ghost. Please try again later.');
+    }
+  });
+});
+
+
+
+app.post('/students/:id', (req, res) => {
+  const studentId = parseInt(req.params.id); // Convert the ID to an integer
+  const updatedStudent = {
+    name: req.body.name,
+    school: req.body.school,
+  };
 
   // Read the student data from the CSV file
   getStudentsFromCsvfile((err, students) => {
@@ -248,13 +282,27 @@ app.get('/students/:id', (req, res) => {
       return;
     }
     if (studentId >= 0 && studentId < students.length) {
-      const student = students[studentId];
-      res.render('student_details', { student });
+      // Update the student's information
+      students[studentId] = updatedStudent;
+
+      // Convert the updated student data back to CSV format
+      const csvData = students.map((student) => `${student.name},${student.school}`).join('\n');
+
+      // Update the CSV file with the new data
+      fs.writeFile('./students.csv', csvData, (err) => {
+        if (err) {
+          console.error(err);
+          res.send("ERROR");
+          return;
+        }
+        res.redirect('/students'); // Redirect to the list of students
+      });
     } else {
       res.status(404).send('Student not found');
     }
   });
 });
+
 
 
 //Create a new GET endpoint /students that serves this view: res.render("students")
