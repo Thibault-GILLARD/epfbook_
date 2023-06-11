@@ -248,7 +248,31 @@ The student ID is passed as a parameter in the URL
 Example: http://localhost:3000/students/0 
 */
 app.get('/students/:id', (req, res) => {
-  const studentId = parseInt(req.params.id); // Convert the ID to an integer
+  const studentId = parseInt(req.params.id); // get the student ID from the URL and convert it to an integer
+
+  getStudentsFromCsvfile((err, students) => {
+    if (err) { // if there is an error, send an error message to the client
+      console.error(err);
+      res.send("Oops! Something went wrong. Please try again later.");
+    }
+    if (studentId >= 0 && studentId < students.length) { // if the student ID is valid, render the student details page
+      const student = students[studentId];
+      res.render('student_details', { student, studentId });
+    } else {
+      res.send('Oops! The student it looks like you are looking for a ghost. Please try again later.');
+    }
+  });
+});
+
+
+// Exam Exercise 2 
+ 
+/*
+This endpoint will render the student details page with the student data from the CSV file
+this post method will update the student data in the CSV file
+*/
+app.post('/students/:id', (req, res) => {
+  const studentId = parseInt(req.params.id); 
 
   getStudentsFromCsvfile((err, students) => {
     if (err) {
@@ -257,48 +281,27 @@ app.get('/students/:id', (req, res) => {
       return;
     }
     if (studentId >= 0 && studentId < students.length) {
-      const student = students[studentId];
-      res.render('student_details', { student, studentId });
-    } else {
-      res.status(404).send('Oops! The student it looks like you are looking for a ghost. Please try again later.');
-    }
-  });
-});
+      students[studentId] = { 
+        name: req.body.name,
+        school: req.body.school,
+      };
+      const csvData = ['name,school']; // Create a new array with the header
 
+      students.forEach((student) => {
+        csvData.push(`${student.name},${student.school}`); // Add a new line for each student
+      });
 
+      const updatedCsvData = csvData.join('\n'); // Join all the lines with a new line character
 
-app.post('/students/:id', (req, res) => {
-  const studentId = parseInt(req.params.id); // Convert the ID to an integer
-  const updatedStudent = {
-    name: req.body.name,
-    school: req.body.school,
-  };
-
-  // Read the student data from the CSV file
-  getStudentsFromCsvfile((err, students) => {
-    if (err) {
-      console.error(err);
-      res.send("ERROR");
-      return;
-    }
-    if (studentId >= 0 && studentId < students.length) {
-      // Update the student's information
-      students[studentId] = updatedStudent;
-
-      // Convert the updated student data back to CSV format
-      const csvData = students.map((student) => `${student.name},${student.school}`).join('\n');
-
-      // Update the CSV file with the new data
-      fs.writeFile('./students.csv', csvData, (err) => {
+      fs.writeFile('./students.csv', updatedCsvData, (err) => {
         if (err) {
           console.error(err);
-          res.send("ERROR");
-          return;
+          res.send("Oops! Something went wrong. Please try again later.");
         }
-        res.redirect('/students'); // Redirect to the list of students
+        res.redirect('/students');
       });
     } else {
-      res.status(404).send('Student not found');
+      res.send('Oops! The student it looks like you are looking for a ghost. Please try again later.');
     }
   });
 });
