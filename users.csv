@@ -1,4 +1,5 @@
 username,password
 tibo,$2b$10$oIT2BngjRJbkMom4.F/lieNfWfgJWXWcRkC2EbzkS3olt.ASHVQ5a
 jean,$2b$10$DgZmKJC2Z0MObkQHWIXw9.GqIC6TEXK8nwI5rXLA0/jrXrwvs20sS
-123,pass 
+admin,$2b$10$OP/LyZJDX6J5IugUmY/iGOT7ADYfz9z7ljj55NYIo5Y./VpPO/UQG
+123,pass,
