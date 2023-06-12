@@ -118,6 +118,20 @@ The application uses basic authentication. The username is `admin` and the passw
 the route `/students/1` exists.
 
 ----
+
+## Rick and Morty API
+
+The character 5 in the Rick and Morty API is Jerry Smith.
+
+![Jerry Smith](https://rickandmortyapi.com/api/character/avatar/5.jpeg)
+
+- Name: Jerry Smith
+- Status: Alive
+- Species: Human
+- Gender: Male
+- Origin: Earth (Replacement Dimension)
+- Location: Earth (Replacement Dimension)
+
 ## Explaination of the code 
 
 
